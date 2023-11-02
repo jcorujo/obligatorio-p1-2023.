@@ -25,6 +25,12 @@ class Piloto:
     @esta_lesionado.setter
     def esta_lesionado(self, estado):
         self._esta_lesionado = estado
+    @score.setter
+    def score(self, nuevo_score):
+        self._score = nuevo_score
+    @puntaje_campeonato.setter
+    def puntaje_campeonato(self, nuevo_puntaje):
+        self._puntaje_campeonato = nuevo_puntaje
         
 
        
