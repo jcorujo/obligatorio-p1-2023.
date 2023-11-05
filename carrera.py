@@ -16,7 +16,8 @@ class Carrera(Campeonato):
     def equipos_participantes(self):
         return self._equipos_participantes
     
-    def buscar_piloto
+    def buscar_piloto(self):
+        pass
     
     def imprevisto(self, id_piloto, tipo_imprevisto:int):
 
@@ -36,4 +37,3 @@ class Carrera(Campeonato):
 equipo1 = Equipo("Equipo1", "Uruguay", '16-05-1990', 20)
 Campeonato1 = Campeonato([equipo1])
 Carrera1 = Carrera()
-Carrera1.imprevisto(self, piloto)

@@ -17,9 +17,8 @@ class Gestor_Personal(Equipo):
        def agregar_director(self, id, nombre, fecha_nacimiento, nacionalidad, salario):
               pass
        
-       def cambiar_piloto(self):
+       def retirar_empleado(self):
               pass
-
        def cambiar_nombre(self, id, nombre):
               pass
        def cambiar_nacionalidad(self, id, nacionalidad):
@@ -29,11 +28,13 @@ class Gestor_Personal(Equipo):
        def cambiar_auto(self, id, nro_auto):
               #checkear que es piloto
               pass
-
        #CAMBIAR SALARIO, AUTO, NOMBRE
        def dar_baja(self, nombre):
               pass
        def dar_alta(self, nombre):
               pass   
+      
+
+
       
      

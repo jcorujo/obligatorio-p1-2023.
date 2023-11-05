@@ -13,6 +13,10 @@ class Gestor_Equipos:
                 equipo_encontrado = equipo
         return equipo_encontrado
     
+    def buscar_piloto(self, id): 
+        for equipo in self._equipos:
+            pass
+        
     def agregar_equipo(self, equipo):
         #Verificar que equipo no exista
         pass
@@ -20,5 +24,17 @@ class Gestor_Equipos:
     def cambiar_nombre(self, equipo, nuevo_nombre):
         pass
    
-    def traspasar_pilotos(self, equipo, piloto):
+
+    def habilitados_para_correr(self):
+        #checkear capacidad pilotos
+        #return pilotos que corren
+        #return a list
         pass
+    def puede_participar(self):
+        pass
+        #checkear que tiene al menos un piloto
+        #checkear que tiene los mecanicos necesarios
+        #checkear que no falta un director
+    def obtener_puntajes_pilotos(self):
+        pass
+    

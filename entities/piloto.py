@@ -1,9 +1,11 @@
-class Piloto:
-    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto):
+from entities.empleado import Empleado
+class Piloto(Empleado):
+    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score):
         super().__init___(id, nombre, fecha_nacimiento, nacionalidad, salario)
         self._nro_auto = nro_auto 
         self._esta_lesionado = False
-        self._score = 0
+        self._es_titular = False
+        self._score = score
         self._puntaje_campeonato = 0
         
     @property
@@ -16,21 +18,23 @@ class Piloto:
     def esta_lesionado(self) -> bool:
         return self._esta_lesionado
     @property
+    def es_titular(self) -> bool:
+        return self._es_titular
+    @property
     def puntaje_campeonato(self) -> int:
         return self._puntaje_campeonato
+    
 
     @nro_auto.setter
-    def nro_auto(self, nro_nuevo):
+    def nro_auto(self, nro_nuevo:int):
         self._nro_auto = nro_nuevo
     @esta_lesionado.setter
-    def esta_lesionado(self, estado):
+    def esta_lesionado(self, estado:bool):
         self._esta_lesionado = estado
-    @score.setter
-    def score(self, nuevo_score):
-        self._score = nuevo_score
-    @puntaje_campeonato.setter
-    def puntaje_campeonato(self, nuevo_puntaje):
-        self._puntaje_campeonato = nuevo_puntaje
+    @es_titular.setter
+    def es_titular(self, es_titular:bool):
+        self._es_titular = es_titular
+    
         
 
        

@@ -1,7 +1,8 @@
-class Mecanico:
-    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario):
-        super().__init___(id, nombre, fecha_nacimiento, nacionalidad, salario)
-        self._score = 0
+from entities.empleado import Empleado
+class Mecanico(Empleado):
+    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, score):
+        super().__init___(id, nombre, fecha_nacimiento, nacionalidad, salario, score)
+        self._score = score
     
     @property
     def score(self):
