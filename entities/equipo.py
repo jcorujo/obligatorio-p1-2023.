@@ -1,7 +1,6 @@
-from entities.empleado import Empleado
-from entities.piloto import Piloto
-from entities.mecanico import Mecanico
-from entities.director import Director
+from piloto import Piloto
+from mecanico import Mecanico
+from director import Director
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 
 class Equipo:
@@ -46,14 +45,14 @@ class Equipo:
     def score(self, nuevo_score):
         self._score = nuevo_score
     
-    def buscar_empleado(self, id):
+    #def buscar_empleado(self, id):
         empleado_encontrado = None
         for empleado in self._empleados:
             if empleado.id == id:
                 empleado_encontrado = empleado
         return empleado_encontrado
     
-    def es_piloto(self, id):
+    #def es_piloto(self, id):
         empleado = Equipo.buscar_empleado(id)
         if empleado == None:
             raise EmpleadoNoExiste(410, "El empleado ingresado no forma parte del equipo")
@@ -61,7 +60,7 @@ class Equipo:
             es_piloto = isinstance(empleado, Piloto)
         return es_piloto
     
-    def es_mecanico(self, id):
+    #def es_mecanico(self, id):
         empleado = Equipo.buscar_empleado(id)
         if empleado == None:
             raise EmpleadoNoExiste(410, "El empleado ingresado no forma parte del equipo")
@@ -69,11 +68,10 @@ class Equipo:
             es_mecanico = isinstance(empleado, Mecanico)
         return es_mecanico
     
-    def es_director(self, id):
+    #def es_director(self, id):
         empleado = Equipo.buscar_empleado(id)
         if empleado == None:
             raise EmpleadoNoExiste(410, "El empleado ingresado no forma parte del equipo")
         else:
             es_director = isinstance(empleado, Director)
         return es_director
-    #d
