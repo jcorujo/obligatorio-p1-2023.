@@ -1,5 +1,4 @@
-from abc import ABC, abstractmethod
-from datetime import datetime
+from abc import ABC
 
 class Empleado(ABC):
     def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario):
@@ -8,9 +7,8 @@ class Empleado(ABC):
         self._fecha_nacimiento = fecha_nacimiento
         self._nacionalidad = nacionalidad
         self._salario = salario
-        self._edad = ''
-        self._equipo = ''
-
+        self._equipo = None
+        #que hacemos con fecha nacimiento
     @property
     def id(self):
         return self._id
@@ -21,6 +19,9 @@ class Empleado(ABC):
     def fecha_nacimiento(self):
         return self._fecha_nacimiento
     @property
+    def edad(self):
+        return self._edad
+    @property
     def nacionalidad(self):
         return self._nacionalidad
     @property
@@ -29,6 +30,7 @@ class Empleado(ABC):
     @property
     def equipo(self):
         return self._equipo
+    
     
     @nombre.setter
     def nombre(self, nuevo_nombre):
@@ -42,5 +44,6 @@ class Empleado(ABC):
     @equipo.setter
     def equipo(self, nuevo_equipo):
         self._salario = nuevo_equipo
-   
+    
+    
     

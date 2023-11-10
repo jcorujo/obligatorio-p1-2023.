@@ -2,7 +2,7 @@ from entities.empleado import Empleado
 from datetime import datetime
 
 class Piloto(Empleado):
-    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score):
+    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular: bool):
         super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
         self._edad = self.calcular_edad()
         self._nro_auto = nro_auto 
@@ -13,6 +13,7 @@ class Piloto(Empleado):
         #añadir excepciones para argumentos
         #COMO PEDIR FECHA DE NACIMIENTO SIN TENER QUE PONER DATETIME, CAPAZ ES MEJOR SACAR EL ATRIBUTO EDAD PORQUE SINO CUANDO CORRA EL CODIGO NO VA A PODER
         #SI SE DEJA EL ATRIBUTO, HAY QUE PONERLO EN LOS OTROS TIPOS DE EMPLEADOS
+        #CREAMOS UNA NUEVA CLASE HIJO PARA PILOTO_RESERVA O LO DEJAMOS ASI, PREGUNTAMOS A PROFE
     @property
     def nro_auto(self) -> int:
         return self._nro_auto

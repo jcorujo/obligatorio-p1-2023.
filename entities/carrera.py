@@ -16,9 +16,7 @@ class Carrera(Campeonato):
     @property
     def equipos_participantes(self):
         return self._equipos_participantes
-    
-
-    
+ 
     def buscar_equipo(self, nombre_equipo):
         equipo_encontrado = None
         for equipo in self._equipos:
@@ -27,7 +25,7 @@ class Carrera(Campeonato):
         return equipo_encontrado
     
     def buscar_piloto(self, id_piloto): 
-      
+        pass
 
     def registrar_imprevisto(self, id_piloto, tipo_imprevisto:int):
         Carrera.buscar_piloto(id_piloto)

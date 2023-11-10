@@ -19,8 +19,8 @@ class Gestor_Personal(Equipo):
                      raise EmpleadoNoExiste(410, "El empleado ingresado no existe, ingrese un id válido")
               return empleado_encontrado
        
-       def agregar_piloto(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score):
-              piloto = Piloto(id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score)
+       def agregar_piloto(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular):
+              piloto = Piloto(id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular)
               self._empleados.append(piloto)
 
        def es_piloto(self, id):
@@ -76,7 +76,7 @@ class Gestor_Personal(Equipo):
               piloto = Gestor_Personal.buscar_empleado
               piloto.esta_lesionado(True)
                  
-
+#¿Vamos a agregar metodos para cambiar salarios, nro_autos , etc?
 
 
       
