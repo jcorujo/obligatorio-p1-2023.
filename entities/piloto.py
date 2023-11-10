@@ -1,4 +1,4 @@
-from empleado import Empleado
+from entities.empleado import Empleado
 from datetime import datetime
 
 class Piloto(Empleado):

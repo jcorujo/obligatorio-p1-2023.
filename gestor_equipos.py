@@ -1,5 +1,6 @@
 from exceptions.EquipoNoExiste import EquipoNoExiste
 from entities.equipo import Equipo
+from datetime import datetime
 
 
 class Gestor_Equipos:
@@ -11,12 +12,12 @@ class Gestor_Equipos:
     def equipos(self):
         return self._equipos
     
-    def buscar_equipo(self, equipo):
+    def buscar_equipo(self, nombre_equipo):
         equipo_encontrado = None
         for equipo in self._equipos:
-            if (equipo.nombre() == equipo) or (isinstance(equipo, Equipo)):
+            if (equipo.nombre == nombre_equipo or isinstance(nombre_equipo, Equipo)):
                 equipo_encontrado = equipo
-        if equipo == None:
+        if equipo_encontrado == None:
             raise EquipoNoExiste(415, "El equipo ingresado no existe")
         return equipo_encontrado
      
@@ -25,7 +26,7 @@ class Gestor_Equipos:
         pass
     
     def agregar_piloto(self, equipo, nombre, id, fecha_nacimiento, nacionalidad, salario, nro_auto):
-        equipo = Gestor_Equipos.buscar_equipo(equipo)
+        equipo = Gestor_Equipos.buscar_equipo(self, equipo)
               
               #VERIFICAR EXISTENCIA EQUIPO
               #VERIFICAR CAPACIDAD EQUIPO
@@ -53,7 +54,8 @@ class Gestor_Equipos:
     def obtener_puntajes_pilotos(self):
         pass
     
-Equipo1 = Equipo("Equipo1", "Uruguay", 1990, 80, "Ferrari122" )
-Gestor = Gestor_Equipos([Equipo1])
+Equipo1 = Equipo("Equipo1", "Uruguay", 1990, 80, "ModeloY" )
+Equipo2 = Equipo("Equipo2", "Uruguay",1990, 80, "ModeloX")
+Gestor = Gestor_Equipos([Equipo1, Equipo2])
 print(Gestor.equipos)
-Gestor.agregar_piloto("Equipo2")
+Gestor.agregar_piloto("Equipo3",5555555, "Julio", datetime(2003, 4, 17), "uruguayo", 2000, 312321)

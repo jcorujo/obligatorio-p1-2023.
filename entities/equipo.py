@@ -1,6 +1,6 @@
-from piloto import Piloto
-from mecanico import Mecanico
-from director import Director
+from entities.piloto import Piloto
+from entities.mecanico import Mecanico
+from entities.director import Director
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 
 class Equipo:
