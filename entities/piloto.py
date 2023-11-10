@@ -11,7 +11,8 @@ class Piloto(Empleado):
         self._score = score
         self._puntaje_campeonato = 0
         #añadir excepciones para argumentos
-        
+        #COMO PEDIR FECHA DE NACIMIENTO SIN TENER QUE PONER DATETIME, CAPAZ ES MEJOR SACAR EL ATRIBUTO EDAD PORQUE SINO CUANDO CORRA EL CODIGO NO VA A PODER
+        #SI SE DEJA EL ATRIBUTO, HAY QUE PONERLO EN LOS OTROS TIPOS DE EMPLEADOS
     @property
     def nro_auto(self) -> int:
         return self._nro_auto
@@ -47,7 +48,7 @@ class Piloto(Empleado):
         return edad
    
     
-Piloto1 = Piloto(5555555, "Julio", datetime("2003, 4, 17"), "uruguayo", 2000, 312321, 100 )
+Piloto1 = Piloto(5555555, "Julio", datetime(2003, 4, 17), "uruguayo", 2000, 312321, 100 )
 print(Piloto1.edad)
 
 
