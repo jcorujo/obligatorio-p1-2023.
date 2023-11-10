@@ -1,31 +1,46 @@
+from exceptions.EquipoNoExiste import EquipoNoExiste
+from entities.equipo import Equipo
+
+
 class Gestor_Equipos:
-    def __init__(self, equipos):
-        self._equipos = []
-    #CREAR EXCEPCIONES
+    def __init__(self, equipos:list):
+        #¿cuales son los argumentos, los nombres de los equipos o los nombres de las instancias?
+        self._equipos = equipos
+    
     @property
     def equipos(self):
         return self._equipos
     
-    def buscar_equipo(self, nombre_equipo):
+    def buscar_equipo(self, equipo):
         equipo_encontrado = None
         for equipo in self._equipos:
-            if equipo.nombre == nombre_equipo:
+            if (equipo.nombre() == equipo) or (isinstance(equipo, Equipo)):
                 equipo_encontrado = equipo
+        if equipo == None:
+            raise EquipoNoExiste(415, "El equipo ingresado no existe")
         return equipo_encontrado
-    
-    def buscar_piloto(self, id): 
-        for equipo in self._equipos:
-            pass
-        
+     
     def agregar_equipo(self, equipo):
         #Verificar que equipo no exista
         pass
     
+    def agregar_piloto(self, equipo, nombre, id, fecha_nacimiento, nacionalidad, salario, nro_auto):
+        equipo = Gestor_Equipos.buscar_equipo(equipo)
+              
+              #VERIFICAR EXISTENCIA EQUIPO
+              #VERIFICAR CAPACIDAD EQUIPO
+              #VERIFICAR QUE NO EXISTA PILOTO CON MISMO ID, EN EL EQUIPO U OTROS EQUIPOS
+              #CREAR PILOTO
+        pass
+      
     def cambiar_nombre(self, equipo, nuevo_nombre):
         pass
    
 
     def habilitados_para_correr(self):
+        for equipo in self._equipos:
+            empleados = equipo.empleados
+            
         #checkear capacidad pilotos
         #return pilotos que corren
         #return a list
@@ -38,3 +53,7 @@ class Gestor_Equipos:
     def obtener_puntajes_pilotos(self):
         pass
     
+Equipo1 = Equipo("Equipo1", "Uruguay", 1990, 80, "Ferrari122" )
+Gestor = Gestor_Equipos([Equipo1])
+print(Gestor.equipos)
+Gestor.agregar_piloto("Equipo2")

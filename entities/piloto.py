@@ -1,12 +1,16 @@
-from entities.empleado import Empleado
+from empleado import Empleado
+from datetime import datetime
+
 class Piloto(Empleado):
     def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score):
-        super().__init___(id, nombre, fecha_nacimiento, nacionalidad, salario)
+        super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
+        self._edad = self.calcular_edad()
         self._nro_auto = nro_auto 
         self._esta_lesionado = False
         self._es_titular = False
         self._score = score
         self._puntaje_campeonato = 0
+        #añadir excepciones para argumentos
         
     @property
     def nro_auto(self) -> int:
@@ -23,6 +27,9 @@ class Piloto(Empleado):
     @property
     def puntaje_campeonato(self) -> int:
         return self._puntaje_campeonato
+    @property
+    def edad(self) -> int:
+        return self._edad
     
 
     @nro_auto.setter
@@ -35,6 +42,13 @@ class Piloto(Empleado):
     def es_titular(self, es_titular:bool):
         self._es_titular = es_titular
     
-        
+    def calcular_edad(self):
+        edad = (datetime.today().year - self._fecha_nacimiento.year)
+        return edad
+   
+    
+Piloto1 = Piloto(5555555, "Julio", datetime("2003, 4, 17"), "uruguayo", 2000, 312321, 100 )
+print(Piloto1.edad)
+
 
        

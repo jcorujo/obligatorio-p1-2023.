@@ -3,6 +3,8 @@ from gestor_equipos import Gestor_Equipos
 from gestor_personal import Gestor_Personal
 from entities.equipo import Equipo
 from exceptions.ArgumentoInvalido import ArgumentoInvalido
+from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
+from exceptions.EquipoNoExiste import EquipoNoExiste
 
 class Carrera(Campeonato):
     def __init__(self):
@@ -11,16 +13,24 @@ class Carrera(Campeonato):
         self._pilotos_participantes = []
         self._posiciones = []
 
-    
     @property
     def equipos_participantes(self):
         return self._equipos_participantes
     
-    def buscar_piloto(self):
-        pass
-    
-    def imprevisto(self, id_piloto, tipo_imprevisto:int):
 
+    
+    def buscar_equipo(self, nombre_equipo):
+        equipo_encontrado = None
+        for equipo in self._equipos:
+            if equipo.nombre == nombre_equipo:
+                equipo_encontrado = equipo
+        return equipo_encontrado
+    
+    def buscar_piloto(self, id_piloto): 
+      
+
+    def registrar_imprevisto(self, id_piloto, tipo_imprevisto:int):
+        Carrera.buscar_piloto(id_piloto)
         if tipo_imprevisto == 0:
             pass
         if tipo_imprevisto == 1:
