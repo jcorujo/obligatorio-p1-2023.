@@ -1,20 +1,20 @@
 from abc import ABC
 
 class Empleado(ABC):
-    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario):
-        self._id = id
+    def __init__(self, nombre, id, fecha_nacimiento, nacionalidad, salario):
         self._nombre = nombre
+        self._id = id
         self._fecha_nacimiento = fecha_nacimiento
         self._nacionalidad = nacionalidad
         self._salario = salario
-        self._equipo = None
         #que hacemos con fecha nacimiento
-    @property
-    def id(self):
-        return self._id
+    
     @property
     def nombre(self):
         return self._nombre
+    @property
+    def id(self):
+        return self._id
     @property
     def fecha_nacimiento(self):
         return self._fecha_nacimiento

@@ -4,13 +4,22 @@ class Mecanico(Empleado):
         super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
         self._score = score
         self._puntaje_campeonato = 0
-    
+        self._equipo = None
+        
     @property
     def score(self):
         return self._score
     @property
     def puntaje_campeonato(self) -> int:
         return self._puntaje_campeonato
+    @property
+    def equipo(self):
+        return self._equipo
+    
     @score.setter
     def score(self, new_score):
         self._score = new_score
+    @equipo.setter
+    def equipo(self, equipo):
+        self._equipo = equipo
+    
