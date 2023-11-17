@@ -7,7 +7,12 @@ class Campeonato:
         return self._participantes
     
     def pilotos_con_mas_puntos(self):
-        pass
+        for equipo in self._participantes:
+            pilotos = equipo.obtener_pilotos()
+            for piloto in pilotos:
+                orden_puntaje = sorted(self.participantes, key=lambda x: x.puntaje_carrera, reverse=True)
+                pass
+
     
     def resumen_puntos(self):
         pass

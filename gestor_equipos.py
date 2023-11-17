@@ -105,19 +105,4 @@ class Gestor_Equipos:
             case _:
                 raise ArgumentoInvalido(420, "El tipo de empleado ingresado es inválido")
 
-    def puede_participar(self, equipo):
-        if len(equipo.habilitados_para_correr()) > 0:
-            mecanicos = equipo.obtener_mecanicos()
-            if len(mecanicos) > 7:
-                for empleado in equipo.empleados:
-                    if equipo.es_director(empleado.id):
-                        return True
-        return False
     
-    #def encontrar_empleado(self, id_empleado):
-        for equipo in self._equipos:
-            personal = Gestor_Personal(equipo)
-            empleado = personal.verificar_empleado(id_empleado)
-            if empleado != None:
-                return empleado
-        raise EmpleadoNoExiste(410, "El empleado ingresado no existe, ingrese un id válido") 

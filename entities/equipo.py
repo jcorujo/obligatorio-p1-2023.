@@ -12,6 +12,7 @@ class Equipo:
         self._creacion = creacion
         self._auto = auto
         self._empleados = []
+        self._puntaje_campeonato = 0
     
     @property
     def nombre(self) -> str:
@@ -29,6 +30,9 @@ class Equipo:
     @property
     def auto(self):
         return self._auto
+    @property
+    def puntaje_campeonato(self):
+        return self._puntaje_campeonato
 
     @nombre.setter
     def nombre(self, nuevo_nombre):
@@ -39,7 +43,13 @@ class Equipo:
     @pais.setter
     def pais(self, nuevo_pais):
         self._pais = nuevo_pais
-    
+    @puntaje_campeonato.setter
+    def puntaje_campeonato(self, puntaje):
+        self._puntaje_campeonato = puntaje
+  
+    def agregar_puntaje_campeonato(self, puntaje):
+        self.puntaje_campeonato += puntaje
+
     def buscar_empleado(self, id):
         empleado_encontrado = None
         for empleado in self._empleados: 
@@ -95,13 +105,13 @@ class Equipo:
         if not self.es_piloto(id):
             raise NoEsPiloto(418, "El empleado ingresado no es piloto") 
         piloto = self.verificar_empleado(id)
-        piloto.esta_lesionado(True)
+        piloto.esta_lesionado = True
 
     def dar_alta_medica(self, id):
         if not self.es_piloto(id):
             raise NoEsPiloto(418, "El empleado ingresado no es piloto") 
         piloto = self.verificar_empleado(id)
-        piloto.esta_lesionado(False)
+        piloto.esta_lesionado = False
        
     def habilitados_para_correr(self):
         pilotos_habilitados = []
@@ -114,5 +124,12 @@ class Equipo:
                     pilotos_habilitados.append(piloto)
         return pilotos_habilitados
 
-
+    def puede_participar(self):
+        if len(self.habilitados_para_correr()) > 0:
+            mecanicos = self.obtener_mecanicos()
+            if len(mecanicos) > 7:
+                for empleado in self.empleados:
+                    if self.es_director(empleado.id):
+                        return True
+        return False
         

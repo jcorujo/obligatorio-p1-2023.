@@ -7,10 +7,10 @@ from gestor_equipos import Gestor_Equipos
 import random
 
 class Carrera():
-    def __init__(self, equipos_participantes):
+    def __init__(self, campeonato):
         self._equipos_participantes = []
-        for equipo in equipos_participantes:
-            if Gestor_Equipos(equipos_participantes).puede_participar(equipo):
+        for equipo in campeonato.participantes:
+            if equipo.puede_participar():
                 self._equipos_participantes.append(equipo)
         self._pilotos = []
         for equipo in self._equipos_participantes:
@@ -69,11 +69,11 @@ class Carrera():
     
     def adjudicar_puntaje(self):
         for piloto in self._pilotos:
-            equipo = self.obtener_plantel(piloto)#funciona
-            piloto.puntaje_carrera = 0 #funciona
+            equipo = self.obtener_plantel(piloto)
+            piloto.puntaje_carrera = 0 
 
-            for participante in equipo:
-                piloto.agregar_puntaje_carrera(participante.score)#participante.score  y agregar_puntaje funcionan, pero no se pq no se agregan los scores
+            for participante in equipo: 
+                piloto.agregar_puntaje_carrera(participante.score)
             
             if piloto in self.abandonaron:
                 piloto.puntaje_carrera = 0
@@ -88,70 +88,99 @@ class Carrera():
         self.adjudicar_puntaje()
         orden_puntaje = sorted(self._pilotos, key=lambda x: x.puntaje_carrera, reverse=True)
         for posicion, piloto in enumerate(orden_puntaje):
-            if posicion < 10:
-                if posicion == 0:
-                    piloto.agregar_puntaje_campeonato(25)
-                elif posicion == 1:
-                    piloto.agregar_puntaje_campeonato(18)
-                elif posicion == 2:
-                    piloto.agregar_puntaje_campeonato(15)
-                elif posicion == 3:
-                    piloto.agregar_puntaje_campeonato(12)
-                elif posicion == 4:
-                    piloto.agregar_puntaje_campeonato(10)
-                elif posicion == 5:
-                    piloto.agregar_puntaje_campeonato(8)
-                elif posicion == 6:
-                    piloto.agregar_puntaje_campeonato(6)
-                elif posicion == 7:
-                    piloto.agregar_puntaje_campeonato(4)
-                elif posicion == 8:
-                    piloto.agregar_puntaje_campeonato(2)
-                elif posicion == 9:
-                    piloto.agregar_puntaje_campeonato(1) 
+            equipo = piloto.equipo
+            if posicion == 0:
+                piloto.agregar_puntaje_campeonato(25)
+                equipo.agregar_puntaje_campeonato(25)
+            elif posicion == 1:
+                piloto.agregar_puntaje_campeonato(18)
+                equipo.agregar_puntaje_campeonato(18)
+            elif posicion == 2:
+                piloto.agregar_puntaje_campeonato(15)
+                equipo.agregar_puntaje_campeonato(15)
+            elif posicion == 3:
+                piloto.agregar_puntaje_campeonato(12)
+                equipo.agregar_puntaje_campeonato(12)
+            elif posicion == 4:
+                piloto.agregar_puntaje_campeonato(10)
+                equipo.agregar_puntaje_campeonato(10)
+            elif posicion == 5:
+                piloto.agregar_puntaje_campeonato(8)
+                equipo.agregar_puntaje_campeonato(8)
+            elif posicion == 6:
+                piloto.agregar_puntaje_campeonato(6)
+                equipo.agregar_puntaje_campeonato(6)
+            elif posicion == 7:
+                piloto.agregar_puntaje_campeonato(4)
+                equipo.agregar_puntaje_campeonato(4)
+            elif posicion == 8:
+                piloto.agregar_puntaje_campeonato(2)
+                equipo.agregar_puntaje_campeonato(2)
+            elif posicion == 9:
+                piloto.agregar_puntaje_campeonato(1)
+                equipo.agregar_puntaje_campeonato(1) 
             self._posiciones[posicion + 1] = piloto
         self.resetear_atributos()                   
     #posicion carrera por piloto en el dictionary
-
-
+    def __str__ (self):
+        for posicion, piloto in self.posiciones.items():
+            print (f"{posicion} = {piloto.nombre}")
+            
 ferrari = Equipo("Ferrari", "Italia", '01-01-1950', "SF-23")
 mercedes = Equipo("Mercedes", "Alemania", '01-01-1970', "W14")
 red_bull = Equipo("Red Bull", "Austria", "01-01-1997", "RB14" )
 gestor = Gestor_Equipos([ferrari, mercedes, red_bull])
-gestor.agregar_director(ferrari, "Enrico Cardile", 1234, "19-04-1970", "italia", 5000 )
-gestor.agregar_piloto(ferrari, "Charles Leclerc", 1235, "16-10-1997", "monaco", 10000, 332, 80, True )
-gestor.agregar_piloto(ferrari, "Carlos Sainz", 1236, "01-09-1994", "españa", 10000, 331, 85, True )
-gestor.agregar_mecanico(ferrari, "Mec1", 1237, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec2", 1238, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec3", 1211, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec4", 12125, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec5", 123777, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec6", 12371231, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec7", 123711, "X", "italia", 1000, random.randint(50, 100))
-gestor.agregar_mecanico(ferrari, "Mec8", 1237123, "X", "italia", 1000, random.randint(50, 100))
+campeonato = Campeonato([ferrari, mercedes, red_bull])
+gestor.agregar_director(ferrari, "Enrico Cardile", 1234, "19/04/1970", "italy", 5000 )
+gestor.agregar_piloto(ferrari, "Charles Leclerc", 1235, "16/10/1997", "monaco", 10000, 332, 80, True )
+gestor.agregar_piloto(ferrari, "Carlos Sainz", 1236, "01/09/1994", "Spain", 10000, 331, 85, True )
+gestor.agregar_mecanico(ferrari, "Mec1", 1237, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec2", 1238, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec3", 1211, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec4", 12125, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec5", 123777, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec6", 12371231, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec7", 123711, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(ferrari, "Mec8", 1237123, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_director(red_bull, "Christian Horner", 11111, "29/12/1970", "United Kingdom", 6000)
+gestor.agregar_piloto(red_bull, "Max Verstappen", 22222, "30/09/1997", "Netherlands", 10000, 500, 95, True )
+gestor.agregar_piloto(red_bull, "Sergio Perez", 123511, "16/10/1997", "Spain", 10000, 338, 85, True )
+gestor.agregar_mecanico(red_bull, "Mec1", 1237123, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237111, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237444, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237555, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237666, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237777, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237888, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_mecanico(red_bull, "Mec1", 1237999, "01/09/1994", "italia", 1000, random.randint(50, 100))
+gestor.agregar_piloto(ferrari, "Antonio Giovinazzi", 51341412, "01/01/2000", "Italia", 1000, 600, 78, False )
 print("Los empleados de ferrari son:", ferrari.empleados)
-print("ferrari puede participar:", gestor.puede_participar(ferrari)) #ESTO DEBERIA DAR TRUE
+print("ferrari puede participar:", ferrari.puede_participar()) #ESTO DEBERIA DAR TRUE
 print("ferrari tiene capacidad titulares:" , gestor.tiene_capacidad(ferrari, 1)) #ESTO DEBERIA DAR FALSE
 print("ferrari tiene capacidad director:" , gestor.tiene_capacidad(ferrari, 3))  #ESTO DEBERIA DAR FALSE
-carrera1 = Carrera([ferrari, mercedes, red_bull])
-print(carrera1.equipos_participantes)
+carrera1 = Carrera(campeonato)
+print("Red Bull puede participar:", red_bull.puede_participar())
+print("Los equipos participantes son", carrera1.equipos_participantes)
+for piloto in carrera1.pilotos:
+    print(piloto.nombre)
 print(len(ferrari.empleados))
-gestor.agregar_piloto(ferrari, "Antonio Giovinazzi", 55555, "19/01/1997", "italia", 500, 112, 70, False)
 for piloto in ferrari.obtener_pilotos():
     print(piloto.es_titular)
 print("Ferrari tiene capacidad de reserva:", gestor.tiene_capacidad(ferrari, 2))  #ESTO DEBERIA DAR FALSE
 lecrerc = carrera1.buscar_piloto(332)
 sainz = carrera1.buscar_piloto(331)
 print("Los pilotos en la carrera son:", [piloto.nombre for piloto in carrera1.pilotos])
+carrera1.registrar_imprevisto(338, 1)
 carrera1.registrar_imprevisto(332, 2)
-print("puntaje lecrerc", lecrerc.puntaje_carrera)
-print("puntaje de sainz", sainz.puntaje_carrera)
+carrera1.registrar_imprevisto(500, 2)
+carrera1.registrar_imprevisto(331, 3)
+print("El score del plantel ferrari con lecrerc es:", [empleado.score for empleado in carrera1.obtener_plantel(lecrerc)])
 carrera1.adjudicar_puntaje()
+print("abandonaron", carrera1.abandonaron)
+print("puntaje de sainz", sainz.puntaje_carrera)
+carrera1.determinar_posiciones()
+print("puntaje de sainz dps de determinar posiciones", sainz.puntaje_carrera)
+print("puntaje ferrari:", ferrari.puntaje_campeonato)
 print("Las posiciones de las carreras son:", carrera1.posiciones)
 print("el puntaje de campeonato del piloto es:", lecrerc.puntaje_campeonato)
-print("El score del plantel ferrari con lecrerc es:", [empleado.score for empleado in carrera1.obtener_plantel(lecrerc)])
-for participante in carrera1.obtener_plantel(sainz):
-    sainz.agregar_puntaje_carrera(participante.score)
-print(sainz.puntaje_carrera)
-carrera1.registrar_imprevisto(331, 3)
-print(sainz.puntaje_carrera)
+carrera1.__str__()

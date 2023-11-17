@@ -72,7 +72,7 @@ class Piloto(Empleado):
         self._puntaje_carrera = puntaje
     
     def agregar_puntaje_carrera(self, puntaje):
-        self._puntaje_carrera += puntaje
+        self.puntaje_carrera += puntaje
     
     def agregar_puntaje_campeonato(self, puntaje):
         self._puntaje_campeonato += puntaje
