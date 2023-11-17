@@ -19,21 +19,30 @@ class Piloto(Empleado):
     @property
     def nro_auto(self) -> int:
         return self._nro_auto
+    
     @property
     def score(self) -> int:
         return self._score
+    
     @property
     def esta_lesionado(self) -> bool:
         return self._esta_lesionado
+    
     @property
     def es_titular(self) -> bool:
         return self._es_titular
+    
     @property
     def puntaje_campeonato(self) -> int:
         return self._puntaje_campeonato
+    
     @property
     def puntaje_carrera(self) -> int:
-        return self._puntaje_carrera
+        if self._puntaje_carrera < 0:
+            return 0
+        else:
+            return self._puntaje_carrera
+    
     @property
     def equipo(self):
         return self._equipo
@@ -45,15 +54,19 @@ class Piloto(Empleado):
     @nro_auto.setter
     def nro_auto(self, nro_nuevo:int):
         self._nro_auto = nro_nuevo
+    
     @esta_lesionado.setter
     def esta_lesionado(self, estado:bool):
         self._esta_lesionado = estado
+    
     @es_titular.setter
     def es_titular(self, es_titular:bool):
         self._es_titular = es_titular
+    
     @equipo.setter
     def equipo(self, equipo):
         self._equipo = equipo
+    
     @puntaje_carrera.setter
     def puntaje_carrera(self, puntaje):
         self._puntaje_carrera = puntaje

@@ -32,7 +32,7 @@ class Gestor_Equipos:
                             empleado_encontrado = empleado
               return empleado_encontrado   
        
-    def agregar_piloto(self, equipo,nombre, id,fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular):
+    def agregar_piloto(self, equipo,nombre,id,fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular):
         #VERIFICAR EXISTENCIA EQUIPO
         if self.buscar_equipo(equipo) == None:
             raise EquipoNoExiste(415, "El equipo ingresado no existe")
@@ -93,6 +93,7 @@ class Gestor_Equipos:
             case 2:
                 pilotos = equipo.obtener_pilotos()
                 for piloto in pilotos:
+                    print("paso 1")
                     es_titular = piloto.es_titular
                     if not es_titular:
                         return False

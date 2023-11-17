@@ -1,5 +1,4 @@
 from campeonato import Campeonato
-from entities.piloto import Piloto
 from entities.equipo import Equipo
 from exceptions.ArgumentoInvalido import ArgumentoInvalido
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
@@ -75,10 +74,7 @@ class Carrera():
             piloto.puntaje_carrera = 0 #funciona
 
             for participante in equipo:
-                    piloto.agregar_puntaje_carrera(participante.score)#funciona
-            
-            if piloto.puntaje_carrera < 0:
-                piloto.puntaje_carrera = 0 #que mierda pasa aca!!
+                piloto.agregar_puntaje_carrera(participante.score)#participante.score  y agregar_puntaje funcionan, pero no se pq no se agregan los scores
             
             if piloto in self.abandonaron:
                 piloto.puntaje_carrera = 0
@@ -95,28 +91,29 @@ class Carrera():
         for posicion, piloto in enumerate(orden_puntaje):
             if posicion < 10:
                 if posicion == 0:
-                    piloto._puntaje_campeonato += 25
+                    piloto.agregar_puntaje_campeonato(25)
                 elif posicion == 1:
-                    piloto._puntaje_campeonato += 18
+                    piloto.agregar_puntaje_campeonato(18)
                 elif posicion == 2:
-                    piloto._puntaje_campeonato += 15
+                    piloto.agregar_puntaje_campeonato(15)
                 elif posicion == 3:
-                    piloto._puntaje_campeonato += 12
+                    piloto.agregar_puntaje_campeonato(12)
                 elif posicion == 4:
-                    piloto._puntaje_campeonato += 10
+                    piloto.agregar_puntaje_campeonato(10)
                 elif posicion == 5:
-                    piloto._puntaje_campeonato += 8
+                    piloto.agregar_puntaje_campeonato(8)
                 elif posicion == 6:
-                    piloto._puntaje_campeonato += 6
+                    piloto.agregar_puntaje_campeonato(6)
                 elif posicion == 7:
-                    piloto._puntaje_campeonato += 4
+                    piloto.agregar_puntaje_campeonato(4)
                 elif posicion == 8:
-                    piloto._puntaje_campeonato += 2
+                    piloto.agregar_puntaje_campeonato(2)
                 elif posicion == 9:
-                    piloto._puntaje_campeonato += 1  
+                    piloto.agregar_puntaje_campeonato(1) 
             self._posiciones[posicion + 1] = piloto
         self.resetear_atributos()                   
     #posicion carrera por piloto en el dictionary
+
 
 ferrari = Equipo("Ferrari", "Italia", '01-01-1950', "SF-23")
 mercedes = Equipo("Mercedes", "Alemania", '01-01-1970', "W14")
@@ -146,11 +143,18 @@ gestor.agregar_piloto(ferrari, "Antonio Giovinazzi", 55555, "19/01/1997", "itali
 for piloto in ferrari.obtener_pilotos():
     print(piloto.es_titular)
 print("Ferrari tiene capacidad de reserva:", gestor.tiene_capacidad(ferrari, 2))  #ESTO DEBERIA DAR FALSE
-p = carrera1.buscar_piloto(332)
+lecrerc = carrera1.buscar_piloto(332)
+sainz = carrera1.buscar_piloto(331)
 print("Los pilotos en la carrera son:", [piloto.nombre for piloto in carrera1.pilotos])
 carrera1.registrar_imprevisto(332, 2)
-print(p.puntaje_carrera)
+print("puntaje lecrerc", lecrerc.puntaje_carrera)
+print("puntaje de sainz", sainz.puntaje_carrera)
 carrera1.adjudicar_puntaje()
-print(carrera1.posiciones)
-print(p.puntaje_campeonato)
-print("El score del plantel ferrari es:", [empleado.score for empleado in carrera1.obtener_plantel(p)])
+print("Las posiciones de las carreras son:", carrera1.posiciones)
+print("el puntaje de campeonato del piloto es:", lecrerc.puntaje_campeonato)
+print("El score del plantel ferrari con lecrerc es:", [empleado.score for empleado in carrera1.obtener_plantel(lecrerc)])
+for participante in carrera1.obtener_plantel(sainz):
+    sainz.agregar_puntaje_carrera(participante.score)
+print(sainz.puntaje_carrera)
+carrera1.registrar_imprevisto(331, 3)
+print(sainz.puntaje_carrera)
