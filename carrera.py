@@ -124,7 +124,7 @@ class Carrera():
     #posicion carrera por piloto en el dictionary
     def __str__ (self):
         for posicion, piloto in self.posiciones.items():
-            print (f"{posicion} = {piloto.nombre}")
+            print (f"{posicion} - {piloto.nombre}")
             
 ferrari = Equipo("Ferrari", "Italia", '01-01-1950', "SF-23")
 mercedes = Equipo("Mercedes", "Alemania", '01-01-1970', "W14")
