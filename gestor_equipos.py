@@ -78,11 +78,11 @@ class Gestor_Equipos:
         director.equipo = equipo
 
     def tiene_capacidad(self, equipo, tipo_empleado):
-        equipo = self.buscar_equipo(equipo)
+        verificar_existencia = self.buscar_equipo(equipo)
         match tipo_empleado:
-        
             case 1:
                 pilotos = equipo.obtener_pilotos()
+                print(pilotos)
                 titulares = 0
                 for piloto in pilotos:
                     if piloto.es_titular:
@@ -93,11 +93,10 @@ class Gestor_Equipos:
             case 2:
                 pilotos = equipo.obtener_pilotos()
                 for piloto in pilotos:
-                    print("paso 1")
                     es_titular = piloto.es_titular
                     if not es_titular:
                         return False
-                
+                return True
             case 3:
                 for empleado in equipo._empleados:
                     if equipo.es_director(empleado.id):

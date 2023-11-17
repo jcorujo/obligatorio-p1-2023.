@@ -68,7 +68,6 @@ class Carrera():
         return plantel
     
     def adjudicar_puntaje(self):
-        #aÑadir excepcion para piloto que abandono
         for piloto in self._pilotos:
             equipo = self.obtener_plantel(piloto)#funciona
             piloto.puntaje_carrera = 0 #funciona
@@ -130,15 +129,13 @@ gestor.agregar_mecanico(ferrari, "Mec5", 123777, "X", "italia", 1000, random.ran
 gestor.agregar_mecanico(ferrari, "Mec6", 12371231, "X", "italia", 1000, random.randint(50, 100))
 gestor.agregar_mecanico(ferrari, "Mec7", 123711, "X", "italia", 1000, random.randint(50, 100))
 gestor.agregar_mecanico(ferrari, "Mec8", 1237123, "X", "italia", 1000, random.randint(50, 100))
-print(ferrari.empleados)
-print(gestor.puede_participar(ferrari)) #ESTO DEBERIA DAR TRUE
-print(gestor.tiene_capacidad(ferrari, 1)) #ESTO DEBERIA DAR FALSE
-print(gestor.tiene_capacidad(ferrari, 3))  #ESTO DEBERIA DAR FALSE
+print("Los empleados de ferrari son:", ferrari.empleados)
+print("ferrari puede participar:", gestor.puede_participar(ferrari)) #ESTO DEBERIA DAR TRUE
+print("ferrari tiene capacidad titulares:" , gestor.tiene_capacidad(ferrari, 1)) #ESTO DEBERIA DAR FALSE
+print("ferrari tiene capacidad director:" , gestor.tiene_capacidad(ferrari, 3))  #ESTO DEBERIA DAR FALSE
 carrera1 = Carrera([ferrari, mercedes, red_bull])
 print(carrera1.equipos_participantes)
 print(len(ferrari.empleados))
-for piloto in ferrari.obtener_pilotos():
-    print(piloto.es_titular)
 gestor.agregar_piloto(ferrari, "Antonio Giovinazzi", 55555, "19/01/1997", "italia", 500, 112, 70, False)
 for piloto in ferrari.obtener_pilotos():
     print(piloto.es_titular)
