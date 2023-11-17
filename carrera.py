@@ -1,5 +1,6 @@
 from campeonato import Campeonato
 from entities.equipo import Equipo
+from entities.piloto import Piloto
 from exceptions.ArgumentoInvalido import ArgumentoInvalido
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 from exceptions.EquipoNoExiste import EquipoNoExiste
@@ -43,6 +44,12 @@ class Carrera():
             raise EmpleadoNoExiste(410, "El empleado ingresado no forma parte de esta carrera")  
         return piloto_encontrado
     
+    def explusar_piloto(self, piloto):
+        if (isinstance(piloto, Piloto) and piloto in self.pilotos):
+            self._pilotos.remove(piloto)
+        else:
+            raise ArgumentoInvalido(420, 'El piloto ingresado es invalido')
+
     def registrar_imprevisto(self, nro_auto, tipo_imprevisto:int):
         piloto = self.buscar_piloto(nro_auto)                
         if tipo_imprevisto == 0:
@@ -119,12 +126,13 @@ class Carrera():
             elif posicion == 9:
                 piloto.agregar_puntaje_campeonato(1)
                 equipo.agregar_puntaje_campeonato(1) 
-            self._posiciones[posicion + 1] = piloto
+            self._posiciones[posicion + 1] = [piloto, piloto.puntaje_carrera]
         self.resetear_atributos()                   
-    #posicion carrera por piloto en el dictionary
-    def __str__ (self):
-        for posicion, piloto in self.posiciones.items():
-            print (f"{posicion} - {piloto.nombre}")
+    
+    def resumen_posiciones (self):
+        print ("Las posiciones de la carrera son: \n")
+        for posicion, valor in self.posiciones.items():
+            print (f"{posicion} - {valor[0].nombre}: {valor[1]}")
             
 ferrari = Equipo("Ferrari", "Italia", '01-01-1950', "SF-23")
 mercedes = Equipo("Mercedes", "Alemania", '01-01-1970', "W14")
@@ -183,4 +191,4 @@ print("puntaje de sainz dps de determinar posiciones", sainz.puntaje_carrera)
 print("puntaje ferrari:", ferrari.puntaje_campeonato)
 print("Las posiciones de las carreras son:", carrera1.posiciones)
 print("el puntaje de campeonato del piloto es:", lecrerc.puntaje_campeonato)
-carrera1.__str__()
+carrera1.resumen_posiciones()
