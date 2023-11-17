@@ -6,7 +6,7 @@ from exceptions.EquipoSinCapacidad import EquipoSinCapacidad
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 
 class Equipo:
-    def __init__(self, nombre:str, pais:str, creacion,auto):
+    def __init__(self, nombre:str, pais:str, creacion, auto):
         self._nombre = nombre
         self._pais = pais
         self._creacion = creacion
@@ -68,7 +68,7 @@ class Equipo:
     
     def agregar_empleado(self, empleado):
         self._empleados.append(empleado)
-
+    
     def es_piloto(self, id):
         empleado = self.verificar_empleado(id)  
         return isinstance(empleado, Piloto)

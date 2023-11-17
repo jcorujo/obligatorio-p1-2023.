@@ -3,7 +3,6 @@ class Mecanico(Empleado):
     def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, score):
         super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
         self._score = score
-        self._puntaje_campeonato = 0
         self._equipo = None
         
     @property

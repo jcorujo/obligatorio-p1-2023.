@@ -33,7 +33,7 @@ class Gestor_Equipos:
                             empleado_encontrado = empleado
               return empleado_encontrado   
     
-    def equipo_automovil(self, team, modelo, score):
+    def cambiar_automovil(self, team, modelo, score):
         auto = Automovil(modelo, score)
         team.auto = auto
         auto.equipo = team
