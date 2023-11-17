@@ -72,15 +72,17 @@ class Carrera():
         mecanicos = equipo.obtener_mecanicos()
         for mecanico in mecanicos:
             plantel.append(mecanico)
+        plantel.append(equipo.auto)
+        
         return plantel
     
     def adjudicar_puntaje(self):
         for piloto in self._pilotos:
-            equipo = self.obtener_plantel(piloto)
+            plantel = self.obtener_plantel(piloto)
             piloto.puntaje_carrera = 0 
 
-            for participante in equipo: 
-                piloto.agregar_puntaje_carrera(participante.score)
+            for integrante in plantel: 
+                piloto.agregar_puntaje_carrera(integrante.score)
             
             if piloto in self.abandonaron:
                 piloto.puntaje_carrera = 0

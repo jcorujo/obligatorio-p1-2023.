@@ -1,5 +1,5 @@
-class Auto:
-    def __init__(self, modelo,score):
+class Automovil:
+    def __init__(self, modelo, score):
         self._modelo = modelo
         self._score = score
         self._equipo = None
@@ -17,6 +17,9 @@ class Auto:
     @score.setter
     def score(self, nuevo_score):
         self._score = nuevo_score
+    @equipo.setter
+    def equipo(self, equipo):
+        self._equipo = equipo
     
 
 

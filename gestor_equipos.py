@@ -3,10 +3,11 @@ from entities.equipo import Equipo
 from entities.piloto import Piloto
 from entities.mecanico import Mecanico
 from entities.director import Director
+from entities.automovil import Automovil
 from exceptions.EquipoNoExiste import EquipoNoExiste
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 from exceptions.ArgumentoInvalido import ArgumentoInvalido
-from exceptions.EmpleadoEnOtroEquipo import EmpleadoEnOtroEquipo
+from exceptions.EmpleadoEnEquipo import EmpleadoEnEquipo
 from exceptions.EquipoSinCapacidad import EquipoSinCapacidad
 
 #LLEVAR METODOS A CLASE EQUIPO
@@ -31,7 +32,12 @@ class Gestor_Equipos:
                      if empleado.id == id:
                             empleado_encontrado = empleado
               return empleado_encontrado   
-       
+    
+    def equipo_automovil(self, team, modelo, score):
+        auto = Automovil(modelo, score)
+        team.auto = auto
+        auto.equipo = team
+
     def agregar_piloto(self, equipo,nombre,id,fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular):
         #VERIFICAR EXISTENCIA EQUIPO
         if self.buscar_equipo(equipo) == None:
@@ -39,7 +45,7 @@ class Gestor_Equipos:
         #VERIFICAR QUE EMPLEADO NO PERTENEZCA A UN EQUIPO
         for eq in self._equipos:
                 if eq.buscar_empleado(id) != None:
-                    raise EmpleadoEnOtroEquipo(411, f"Ese piloto ya forma parte de un equipo: {equipo.nombre}")
+                    raise EmpleadoEnEquipo(411, f"Ese piloto ya forma parte de un equipo: {equipo.nombre}")
         #VERIFICAR QUE EQUIPO TENGA CAPACIDAD
         if es_titular:
             if not self.tiene_capacidad(equipo, 1):
@@ -57,7 +63,7 @@ class Gestor_Equipos:
         #VERIFICAR QUE EMPLEADO NO PERTENEZCA A UN EQUIPO
         for eq in self._equipos:
                 if eq.buscar_empleado(id) != None:
-                    raise EmpleadoEnOtroEquipo(411, f"Ese mecánico ya forma parte de un equipo: {equipo.nombre}")
+                    raise EmpleadoEnEquipo(411, f"Ese mecánico ya forma parte de un equipo: {equipo.nombre}")
         mecanico = Mecanico(id, nombre, fecha_nacimiento, nacionalidad, salario, score)
         equipo.agregar_empleado(mecanico)
         mecanico.equipo = equipo
@@ -69,7 +75,7 @@ class Gestor_Equipos:
         #VERIFICAR QUE EMPLEADO NO PERTENEZCA A UN EQUIPO
         for eq in self._equipos:
                 if eq.buscar_empleado(id) != None:
-                    raise EmpleadoEnOtroEquipo(411, f"Ese director ya forma parte de un equipo: {equipo.nombre}")       
+                    raise EmpleadoEnEquipo(411, f"Ese director ya forma parte de un equipo: {equipo.nombre}")       
         #VERIFICAR CAPACIDAD
         if not Gestor_Equipos.tiene_capacidad(self, equipo, 3):
              raise EquipoSinCapacidad(422, "El equipo ha alcanzado el número máximo de directores")
@@ -78,7 +84,7 @@ class Gestor_Equipos:
         director.equipo = equipo
 
     def tiene_capacidad(self, equipo, tipo_empleado):
-        verificar_existencia = self.buscar_equipo(equipo)
+        self.buscar_equipo(equipo) #Para verificar existencia
         match tipo_empleado:
             case 1:
                 pilotos = equipo.obtener_pilotos()
