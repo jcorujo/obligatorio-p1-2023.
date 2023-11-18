@@ -99,7 +99,13 @@ def alta_empleado(gestion:Gestion):
                         
                     else:
                         edad=date.year-anio
-                        
+
+                    if edad < 18:
+                        try:
+                            raise ArgumentoFueraDeRango(420,"El argumento ingresado esta fuera de los rangos esperados")   
+                        except ArgumentoFueraDeRango as e:
+                            print(e)
+                            return None                    
                     try:
                         nacionalidad = str(input("Ingrese la nacionalidad del empleado:"))
                         p=re.compile(r"\d+")
@@ -307,7 +313,7 @@ def alta_empleado(gestion:Gestion):
                                                 print(e)
                                                 return None
                                         else:
-                                            jefe_equipo=Director(id,nombre,fecha_nacimiento,nacionalidad,salario,"")
+                                            jefe_equipo=Director(id,nombre,fecha_nacimiento,nacionalidad,salario)
                                             lista_empleados.append(jefe_equipo)
                                         return lista_empleados
 

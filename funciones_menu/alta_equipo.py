@@ -106,6 +106,7 @@ def alta_de_equipo(gestion:Gestion):
                             if modelo == auto.modelo:
                                 automovil = auto
                                 equipo.auto = automovil
+                                auto.equipo = equipo
 
                         else:break
                     
