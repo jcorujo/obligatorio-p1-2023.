@@ -34,9 +34,6 @@ class Equipo:
     @puntaje_campeonato.setter
     def puntaje_campeonato(self, puntaje):
         self._puntaje_campeonato = puntaje
-  
-    def agregar_puntaje_campeonato(self, puntaje):
-        self.puntaje_campeonato += puntaje
 
     def buscar_empleado(self, id):
         empleado_encontrado = None
