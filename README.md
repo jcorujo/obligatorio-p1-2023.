@@ -42,6 +42,13 @@ Para usar la aplicación deberá ejecutrse el siguiente código en el menú prin
 
     ALTA EQUIPO
 
+    Input:
+
+    nombre = string
+    
+    modelo_auto
+
+    cedula_empleados (1:P. Titular, 2:P. Titular, 3:P. Reserva, 4-11:Mecanicos, 12-Jefe de Equipo)
     
 DESCRIPCIÓN DEL MODELO UML
 
