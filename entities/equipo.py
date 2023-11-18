@@ -55,7 +55,8 @@ class Equipo:
         return empleado_encontrado
     
     def agregar_empleado(self, empleado):
-        self._empleados.append(empleado)
+        if isinstance(empleado, Piloto) or isinstance(empleado, Director) or isinstance(empleado, Mecanico):
+            self._empleados.append(empleado)
     
     def es_piloto(self, id):
         empleado = self.verificar_empleado(id)  

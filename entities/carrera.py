@@ -5,10 +5,12 @@ from exceptions.Argumento_Invalido import ArgumentoInvalido
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 from exceptions.EquipoNoExiste import EquipoNoExiste
 
-import random
+
 
 class Carrera():
     def __init__(self, campeonato):
+        if not isinstance(campeonato, Campeonato):
+            raise ArgumentoInvalido(420, "El campeonato ingresado es invalido")
         self._equipos_participantes = []
         for equipo in campeonato.participantes:
             if equipo.puede_participar():
@@ -93,7 +95,7 @@ class Carrera():
             plantel = self.obtener_plantel(piloto)
              
             for integrante in plantel: 
-                piloto.agregar_puntaje_carrera(integrante.score)
+                piloto.puntaje_carrera += integrante.score
             
             if piloto in self.abandonaron:
                 piloto.puntaje_carrera = 0
@@ -114,35 +116,35 @@ class Carrera():
         for posicion, piloto in enumerate(orden_puntaje):
             equipo = piloto.equipo
             if posicion == 0:
-                piloto.agregar_puntaje_campeonato(25)
-                equipo.agregar_puntaje_campeonato(25)
+                piloto.puntaje_campeonato += 25
+                equipo.puntaje_campeonato += 25
             elif posicion == 1:
-                piloto.agregar_puntaje_campeonato(18)
-                equipo.agregar_puntaje_campeonato(18)
+                piloto.puntaje_campeonato += 18
+                equipo.puntaje_campeonato += 18
             elif posicion == 2:
-                piloto.agregar_puntaje_campeonato(15)
-                equipo.agregar_puntaje_campeonato(15)
+                piloto.puntaje_campeonato += 15
+                equipo.puntaje_campeonato += 15
             elif posicion == 3:
-                piloto.agregar_puntaje_campeonato(12)
-                equipo.agregar_puntaje_campeonato(12)
+                piloto.puntaje_campeonato += 12
+                equipo.puntaje_campeonato += 12
             elif posicion == 4:
-                piloto.agregar_puntaje_campeonato(10)
-                equipo.agregar_puntaje_campeonato(10)
+                piloto.puntaje_campeonato += 10
+                equipo.puntaje_campeonato += 10
             elif posicion == 5:
-                piloto.agregar_puntaje_campeonato(8)
-                equipo.agregar_puntaje_campeonato(8)
+                piloto.puntaje_campeonato += 8
+                equipo.puntaje_campeonato += 8
             elif posicion == 6:
-                piloto.agregar_puntaje_campeonato(6)
-                equipo.agregar_puntaje_campeonato(6)
+                piloto.puntaje_campeonato += 6
+                equipo.puntaje_campeonato += 6
             elif posicion == 7:
-                piloto.agregar_puntaje_campeonato(4)
-                equipo.agregar_puntaje_campeonato(4)
+                piloto.puntaje_campeonato += 4
+                equipo.puntaje_campeonato += 4
             elif posicion == 8:
-                piloto.agregar_puntaje_campeonato(2)
-                equipo.agregar_puntaje_campeonato(2)
+                piloto.puntaje_campeonato += 2
+                equipo.puntaje_campeonato += 2
             elif posicion == 9:
-                piloto.agregar_puntaje_campeonato(1)
-                equipo.agregar_puntaje_campeonato(1) 
+                piloto.puntaje_campeonato += 1
+                equipo.puntaje_campeonato += 1 
             self._posiciones[posicion + 1] = [piloto, piloto.puntaje_carrera]
         self.resetear_atributos()                   
     

@@ -1,4 +1,5 @@
 from entities.empleado import Empleado
+
 class Mecanico(Empleado):
     def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, score):
         super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
@@ -8,9 +9,6 @@ class Mecanico(Empleado):
     @property
     def score(self):
         return self._score
-    @property
-    def puntaje_campeonato(self) -> int:
-        return self._puntaje_campeonato
     @property
     def equipo(self):
         return self._equipo

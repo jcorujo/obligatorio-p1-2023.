@@ -16,10 +16,13 @@ class Campeonato:
     def agregar_equipo(self, equipo):
         self._participantes.append(equipo)
         
-    def explusar_equipo(self, equipo):
-        if (isinstance(equipo, Equipo) and equipo in self._participantes):
-            self._participantes.remove(equipo)
-        else:
+    def explusar_equipo(self, nombre):
+        equipo_a_eliminar = None
+        for equipo in self.participantes:
+            if equipo.nombre == nombre:
+                equipo_a_eliminar = equipo
+                self.participantes.remove(equipo)
+        if equipo_a_eliminar == None:
             raise ArgumentoInvalido(420, 'El equipo ingresado es invalido')
         
     def pilotos_con_mas_puntos(self):
