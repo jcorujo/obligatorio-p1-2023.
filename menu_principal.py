@@ -44,7 +44,7 @@ def menu(gestion:Gestion):
                 if menu_principal == 1:
                     empleado=alta_empleado(gestion0)
                     if empleado != None and empleado!=[]:
-                        gestion._empleados.append(empleado[0])
+                        gestion0.empleados.append(empleado[0])
                         print("Se ha agregado un empleado de forma exitosa")
                         menu_principal = 0
                     else:
@@ -54,18 +54,19 @@ def menu(gestion:Gestion):
                 if menu_principal == 2:
                     auto=alta_de_auto(gestion0)
                     if auto !=None and auto != []:
-                        gestion._autos.append(auto[0])
-                        print("Se ha agregado un empleado de forma exitosa")
+                        gestion0.autos.append(auto[0])
+                        print("Se ha agregado el automovil de forma exitosa")
                         menu_principal=0
                         
                     else:
+                        
                         print("No se ha podido agregar el auto")
                         menu_principal=0
                     
                 if menu_principal == 3:
                     equipo=alta_de_equipo(gestion0)
                     if equipo!=[] and equipo!=None:
-                        gestion._equipos.append(equipo[0])
+                        gestion0.equipos.append(equipo[0])
                         print("Se ha agregado el equipo de forma existosa")
                         menu_principal=0
                     
@@ -91,6 +92,6 @@ def menu(gestion:Gestion):
 if __name__=="__main__":
     gestion=Gestion()
     menu_de_inicio=menu(gestion)
-   
+    
   
     

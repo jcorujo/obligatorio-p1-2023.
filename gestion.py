@@ -61,6 +61,9 @@ class Gestion:
         for equipo in self._equipos:
                 if equipo.buscar_empleado(mecanico.id) != None:
                     raise EmpleadoEnEquipo(411, f"Ese mecánico ya forma parte de un equipo: {equipo.nombre}")
+        #VERIFICAR QUE EQUIPO TENGA CAPACIDAD
+        if not self.tiene_capacidad(equipo, 4):
+             raise EquipoSinCapacidad(422, "El equipo ha alcanzado el número máximo de mecanicos")
         equipo.agregar_empleado(mecanico)
         mecanico.equipo = equipo
        
@@ -69,7 +72,7 @@ class Gestion:
         for equipo in self._equipos:
                 if equipo.buscar_empleado(director.id) != None:
                     raise EmpleadoEnEquipo(411, f"Ese director ya forma parte de un equipo: {equipo.nombre}")       
-        #VERIFICAR CAPACIDAD
+        #VERIFICAR QUE EQUIPO TENGA CAPACIDAD
         if not self.tiene_capacidad(equipo, 3):
              raise EquipoSinCapacidad(422, "El equipo ha alcanzado el número máximo de directores")
         equipo.agregar_empleado(director)
@@ -99,4 +102,10 @@ class Gestion:
                     if equipo.es_director(empleado.id):
                         return False
                 return True
-           
+            case 4: 
+                mecanicos = equipo.obtener_mecanicos()
+                if len(mecanicos) == 8:
+                     return False
+                return True
+            case _:
+                raise ArgumentoInvalido(420, "El tipo de empleado ingresado es inválido")
