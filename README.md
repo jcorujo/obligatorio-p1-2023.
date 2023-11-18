@@ -35,8 +35,14 @@ Para usar la aplicación deberá ejecutrse el siguiente código en el menú prin
         score = int (0-100)
         
     ALTA DE AUTO
+
+    modelo = string que puede incluir letras y numeros
+    anio = int 
+    score = int (0-100)
+
+    ALTA EQUIPO
+
     
-SACAR AGREGAR PUNTAJE CARRERA Y CAMPEONATO EN PILOTO Y EQUIPO!!!!!!!!!!
 DESCRIPCIÓN DEL MODELO UML
 
 Clase Auto:
