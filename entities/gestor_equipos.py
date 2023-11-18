@@ -28,7 +28,9 @@ class Gestor_Equipos:
     
     def buscar_empleado(self, id):
               empleado_encontrado = None
-              for empleado in self._empleados: 
+              for equipo in self._equipos:
+                empleados = equipo.empleados     
+                for empleado in empleados: 
                      if empleado.id == id:
                             empleado_encontrado = empleado
               return empleado_encontrado   

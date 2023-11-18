@@ -1,13 +1,13 @@
 from abc import ABC
 
 class Empleado(ABC):
-    def __init__(self, nombre, id, fecha_nacimiento, nacionalidad, salario):
+    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario):
         self._nombre = nombre
         self._id = id
         self._fecha_nacimiento = fecha_nacimiento
         self._nacionalidad = nacionalidad
         self._salario = salario
-        #que hacemos con fecha nacimiento
+        
     
     @property
     def nombre(self):

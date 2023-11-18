@@ -1,5 +1,5 @@
 from entities.equipo import Equipo
-from exceptions.ArgumentoInvalido import ArgumentoInvalido
+from exceptions.Argumento_Invalido import ArgumentoInvalido
 
 class Campeonato:
     def __init__(self, equipos_participantes: list):
@@ -13,6 +13,9 @@ class Campeonato:
     def posiciones(self):
         return self._posiciones
     
+    def agregar_equipo(self, equipo):
+        self._participantes.append(equipo)
+        
     def explusar_equipo(self, equipo):
         if (isinstance(equipo, Equipo) and equipo in self._participantes):
             self._participantes.remove(equipo)
@@ -28,7 +31,7 @@ class Campeonato:
         orden_puntaje = sorted(pilotos, key=lambda x: x.puntaje_campeonato, reverse=True)
         for posicion, piloto in enumerate(orden_puntaje):
             if posicion < 10:
-                print (f"{posicion} - {piloto.nombre}")
+                print (f"{posicion + 1} - {piloto.nombre}: {piloto.puntaje_campeonato}")
     
     def determinar_posiciones(self):
         orden_puntaje = sorted(self._participantes, key=lambda x: x.puntaje_campeonato, reverse = True)
@@ -48,6 +51,3 @@ class Campeonato:
             pilotos_equipo = equipo.obtener_pilotos()
             for piloto in pilotos_equipo:
                 piloto.puntaje_campeonato = 0
-
-        
-    

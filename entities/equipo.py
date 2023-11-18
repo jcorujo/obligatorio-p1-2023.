@@ -6,24 +6,15 @@ from exceptions.EquipoSinCapacidad import EquipoSinCapacidad
 from exceptions.EmpleadoNoExiste import EmpleadoNoExiste
 
 class Equipo:
-    def __init__(self, nombre:str, pais:str, creacion, auto):
+    def __init__(self, nombre:str):
         self._nombre = nombre
-        self._pais = pais
-        self._creacion = creacion
-        self._auto = auto
+        self._auto = None
         self._empleados = []
         self._puntaje_campeonato = 0
     
     @property
     def nombre(self) -> str:
         return self._nombre 
-    @property
-    def pais(self) -> str:
-        return self._pais
-    #FECHAS
-    @property
-    def creacion(self) -> int:
-        return self._creacion
     @property
     def empleados(self):
         return self._empleados
@@ -40,9 +31,6 @@ class Equipo:
     @auto.setter
     def auto(self, nuevo_auto):
         self._auto = nuevo_auto
-    @pais.setter
-    def pais(self, nuevo_pais):
-        self._pais = nuevo_pais
     @puntaje_campeonato.setter
     def puntaje_campeonato(self, puntaje):
         self._puntaje_campeonato = puntaje

@@ -2,7 +2,7 @@ from entities.empleado import Empleado
 from datetime import datetime
 
 class Piloto(Empleado):
-    def __init__(self, nombre,id, fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular: bool):
+    def __init__(self, id, nombre, fecha_nacimiento, nacionalidad, salario, nro_auto, score, es_titular: bool):
         super().__init__(id, nombre, fecha_nacimiento, nacionalidad, salario)
         #self._edad = self.calcular_edad()
         self._nro_auto = nro_auto 
@@ -38,9 +38,6 @@ class Piloto(Empleado):
     
     @property
     def puntaje_carrera(self) -> int:
-        if self._puntaje_carrera < 0:
-            return 0
-        else:
             return self._puntaje_carrera
     
     @property
@@ -71,6 +68,10 @@ class Piloto(Empleado):
     def puntaje_carrera(self, puntaje):
         self._puntaje_carrera = puntaje
     
+    @puntaje_campeonato.setter
+    def puntaje_campeonato(self, puntaje):
+        self._puntaje_campeonato = puntaje
+    
     def agregar_puntaje_carrera(self, puntaje):
         self.puntaje_carrera += puntaje
     
@@ -81,5 +82,3 @@ class Piloto(Empleado):
         #return edad
    
 
-
-       
